@@ -18,6 +18,25 @@
     </div>
 </section>
 
+<section class="darkness">
+    <div class="scrolling-text">
+        <span>
+            TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
+            TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
+            TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
+            TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
+            TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
+        </span>
+        <span>
+            TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
+            TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
+            TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
+            TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
+            TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
+        </span>
+    </div>
+</section>
+
 <style>
     .tall-section {
         background: #5A3C78;
@@ -75,6 +94,41 @@
     .image-grid img:hover {
         transform: scale(1.05);
     }
+    .darkness {
+        background: #000;
+        height: 6vh;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        position: relative;
+    }
+    .scrolling-text {
+        width: 100%;
+        overflow: hidden;
+        white-space: nowrap;
+        position: relative;
+        display: flex;
+    }
+    .scrolling-text span {
+        display: inline-block;
+        color: white;
+        font-size: 1.5rem;
+        font-family: 'Rubik', sans-serif;
+        font-weight: bold;
+        padding-right: 0.5rem;
+        animation: scroll-right 30s linear infinite;
+        white-space: nowrap;
+    }
+    @keyframes scroll-right {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(-100%);
+        }
+    }
     @media (max-width: 900px) {
         .tall-section {
             flex-direction: column;
@@ -86,6 +140,9 @@
         }
         .image-grid img {
             max-width: 40vw;
+        }
+        .tall-section h1 {
+            font-size: 2.5rem;
         }
     }
 </style>
