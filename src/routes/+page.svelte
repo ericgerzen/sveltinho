@@ -37,6 +37,10 @@
     </div>
 </section>
 
+<section class="tall-section-2">
+
+</section>
+
 <style>
     .tall-section {
         background: #5A3C78;
@@ -129,6 +133,19 @@
             transform: translateX(-100%);
         }
     }
+
+    .tall-section-2 {
+        background: #A27ACA;
+        min-height: 40rem;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 4vw;
+        box-sizing: border-box;
+    }
+
     @media (max-width: 900px) {
         .tall-section {
             flex-direction: column;
