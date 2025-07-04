@@ -4,6 +4,40 @@
     onMount(() => {
         document.title = "PC Hardware Deals";
     });
+
+    let totalSquares = 6;
+    let currentIndex = 0; // 0 to 4 (since we show 2 at a time)
+
+    $: visibleSquares = Array(totalSquares)
+        .fill(0)
+        .map((_, i) => i)
+        .slice(currentIndex, currentIndex + 2);
+
+    let animationClass = '';
+    let lastDir = 0;
+
+    /**
+ * Moves the carousel in the given direction.
+ * @param {number} dir - Direction to move: -1 for left, 1 for right.
+ */
+    function move(dir) {
+        if (dir === -1 && currentIndex > 0) {
+            currentIndex--;
+            lastDir = -1;
+            animateSquares();
+        } else if (dir === 1 && currentIndex < totalSquares - 2) {
+            currentIndex++;
+            lastDir = 1;
+            animateSquares();
+        }
+    }
+
+    function animateSquares() {
+        animationClass = lastDir === 1 ? 'slide-right' : 'slide-left';
+        setTimeout(() => {
+            animationClass = '';
+        }, 350);
+    }
 </script>
 
 <section class="tall-section">
@@ -38,8 +72,26 @@
 </section>
 
 <section class="tall-section-2">
-
+    <div class="arrow-container" on:click={() => move(-1)}>
+        <img src="/arrow.png" alt="Left Arrow" class="arrow left-arrow" style="transform: scaleX(-1);" />
+    </div>
+    <div class="squares-indicator-wrapper">
+        <div class="squares-container {animationClass}">
+            {#each visibleSquares as _}
+                <div class="round-square"></div>
+            {/each}
+        </div>
+        <div class="indicators">
+            {#each Array(totalSquares) as _, i}
+                <div class="indicator {i === currentIndex ? 'active' : ''}"></div>
+            {/each}
+        </div>
+    </div>
+    <div class="arrow-container" on:click={() => move(1)}>
+        <img src="/arrow.png" alt="Right Arrow" class="arrow right-arrow" />
+    </div>
 </section>
+
 
 <style>
     .tall-section {
@@ -144,6 +196,71 @@
         justify-content: space-between;
         padding: 0 4vw;
         box-sizing: border-box;
+    }
+    .squares-indicator-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        flex: 1 1 0%;
+        height: 100%;
+    }
+    .squares-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 70vh;
+        gap: 3vw;
+    }
+    .round-square {
+        width: 32vw;
+        max-width: 420px;
+        height: 32vw;
+        max-height: 420px;
+        background: #FF8686;
+        border-radius: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3rem;
+        margin: 0;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+        transition: transform 0.2s;
+    }
+    .indicators {
+        display: flex;
+        justify-content: center;
+        margin-top: 24px;
+        width: 100%;
+    }
+    .indicator {
+        width: 40px;
+        height: 6px;
+        background: #fff;
+        opacity: 0.4;
+        border-radius: 3px;
+        margin: 0 6px;
+        transition: opacity 0.2s;
+    }
+    .indicator.active {
+        opacity: 1;
+        background: #FF8686;
+    }
+    .slide-right {
+        animation: slideRight 0.35s cubic-bezier(0.4,0,0.2,1);
+    }
+    .slide-left {
+        animation: slideLeft 0.35s cubic-bezier(0.4,0,0.2,1);
+    }
+    @keyframes slideRight {
+        0% { transform: translateX(-60px); opacity: 0.7; }
+        100% { transform: translateX(0); opacity: 1; }
+    }
+    @keyframes slideLeft {
+        0% { transform: translateX(60px); opacity: 0.7; }
+        100% { transform: translateX(0); opacity: 1; }
     }
 
     @media (max-width: 900px) {
