@@ -10,10 +10,18 @@
                 <SearchBar />
             </div>
             <div class="icon-group flex items-center space-x-4 ml-auto">
-                <img src="/settings.png" alt="Settings" class="h-9" />
-                <img src="/notifications.png" alt="Notifications" class="h-9" />
-                <img src="/cart.png" alt="Cart" class="h-9" />
-                <img src="/avatar.png" alt="Avatar" class="h-12" />
+                <a href="https://www.youtube.com/watch?v=oG3GgR95ZRs" target="_blank" rel="noopener noreferrer">
+                  <img src="/settings.png" alt="Settings" class="h-9" />
+                </a>
+                <a href="https://www.youtube.com/watch?v=oG3GgR95ZRs" target="_blank" rel="noopener noreferrer">
+                  <img src="/notifications.png" alt="Notifications" class="h-9" />
+                </a>
+                <a href="https://www.youtube.com/watch?v=oG3GgR95ZRs" target="_blank" rel="noopener noreferrer">
+                  <img src="/cart.png" alt="Cart" class="h-9" />
+                </a>
+                <a href="https://www.youtube.com/watch?v=oG3GgR95ZRs" target="_blank" rel="noopener noreferrer">
+                  <img src="/avatar.png" alt="Avatar" class="h-12" />
+                </a>
             </div>
         </div>
     </div>
