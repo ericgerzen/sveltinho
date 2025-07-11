@@ -6,7 +6,7 @@
     });
 
     let totalSquares = 6;
-    let currentIndex = 0; // 0 to 4 (since we show 2 at a time)
+    let currentIndex = 0;
 
     $: visibleSquares = Array(totalSquares)
         .fill(0)
@@ -77,12 +77,12 @@
     </div>
     <div class="squares-indicator-wrapper">
         <div class="squares-container {animationClass}">
-            {#each visibleSquares as _}
-                <div class="round-square"></div>
+            {#each visibleSquares as square}
+                <div class="round-square">{square + 1}</div>
             {/each}
         </div>
         <div class="indicators">
-            {#each Array(totalSquares) as _, i}
+            {#each Array(totalSquares - 1) as _, i}
                 <div class="indicator {i === currentIndex ? 'active' : ''}"></div>
             {/each}
         </div>
@@ -96,7 +96,7 @@
 <style>
     .tall-section {
         background: #5A3C78;
-        min-height: 40rem;
+        min-height: 40.2rem;
         width: 100%;
         display: flex;
         flex-direction: row;
@@ -188,7 +188,7 @@
 
     .tall-section-2 {
         background: #A27ACA;
-        min-height: 40rem;
+        min-height: 40.2rem;
         width: 100%;
         display: flex;
         flex-direction: row;
